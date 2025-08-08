@@ -1,4 +1,4 @@
-# Data Streaming to HPC Simulator for Scitific Workflows
+# Data Streaming to HPC Simulator for Scientific Workflows
 
 ### Summary
 
