@@ -1,0 +1,17 @@
+{
+    "WorkloadName": "generic",
+    "PayloadSize": 4000000,
+    "PayloadFormat": "binary",
+    "PayloadElement": "variable",
+    "DataRate": 3125000,
+    "DataPackaging": {
+        "type": "individual"
+    },
+    "Variability": "steady",
+    "ConsumptionMode": "push",
+    "NumConsumers": 2, 
+    "ConsumerParallelism": "dedicatedMPI",
+    "ConsPayloadDistribution": "roundrobin",
+    "NumProducers": 1,
+    "ProducerParallelism": "dedicatedMPI"
+  }

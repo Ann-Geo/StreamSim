@@ -1,0 +1,108 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/workload.schema.json",
+    "title": "Workload",
+    "description": "Schema for workload characteristics",
+    "type": "object",
+    "properties": {
+      "WorkloadName": {
+        "type": "string",
+        "enum": ["deleria", "lcls", "mock"],
+        "description": "Workload name (deleria, lcls, mock)"
+      },
+      "PayloadSize": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Payload size in bytes"
+      },
+      "PayloadFormat": {
+        "type": "string",
+        "enum": ["plaintext", "json", "binary", "hdf5"],
+        "description": "Format of the payload (plaintext, json, binary, hdf5)"
+      },
+      "PayloadElement": {
+        "type": "string",
+        "enum": ["image", "file", "variable"],
+        "description": "Type of the payload element (e.g., image, file, variable)"
+      },
+      "DataRate": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Data rate in KB/s"
+      },
+      "DataPackaging": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["batched", "individual"],
+            "description": "Packaging of the data (batched vs. individual)"
+          },
+          "batchMessageCount": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of messages per batch (only required if type is 'batched')"
+          }
+        },
+        "required": ["type"],
+        "allOf": [
+          {
+            "if": {
+              "properties": { "type": { "const": "batched" } }
+          },
+            "then": {
+              "required": ["batchMessageCount"]
+          },
+            "else": {
+              "not": {
+                "required": ["batchMessageCount"]
+              }
+            }
+          }
+        ]
+      },
+      "Variability": {
+        "type": "string",
+        "enum": ["burst", "steady", "fluctuating"],
+        "description": "Variability of the workload (burst, steady, fluctuating)"
+      },
+      "ConsumptionMode": {
+        "type": "string",
+        "enum": ["push", "pull"],
+        "description": "Mode of consumption (push or pull)"
+      },
+      "NumConsumers": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Number of consumers"
+      },
+      "ConsumerParallelism": {
+        "type": "string",
+        "enum": ["dedicatedMPI", "nonMPI"],
+        "description": "Type of consumer parallelism (centralMPI, dedicatedMPI, nonMPI)"
+      },
+      "ConsPayloadDistribution": {
+        "type": "string",
+        "enum": ["roundrobin", "random", "broadcast"],
+        "description": "Consumer payload distribution (roundrobin or random)"
+      },
+      "NumProducers": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Number of producers"
+      },
+      "ProducerParallelism": {
+        "type": "string",
+        "enum": ["nonMPI", "dedicatedMPI"],
+        "description": "Type of producer parallelism (nonMPI)"
+      }
+    },
+    "required": [
+      "WorkloadName",
+      "PayloadSize",
+      "DataRate",
+      "NumConsumers",
+      "NumProducers"
+    ]
+  }
+  

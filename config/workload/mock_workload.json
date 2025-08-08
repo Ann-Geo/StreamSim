@@ -1,0 +1,17 @@
+  {
+  "WorkloadName": "mock",
+  "PayloadSize": 1000000,
+  "PayloadFormat": "plaintext",
+  "PayloadElement": "file",
+  "DataRate": 10000,
+  "DataPackaging": {
+    "type": "individual"
+  },
+  "Variability": "steady",
+  "ConsumptionMode": "pull",
+  "NumConsumers": 4,
+  "ConsumerParallelism": "dedicatedMPI",
+  "ConsPayloadDistribution": "roundrobin",
+  "NumProducers": 4,
+  "ProducerParallelism": "dedicatedMPI"
+}

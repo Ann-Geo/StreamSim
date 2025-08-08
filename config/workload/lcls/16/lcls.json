@@ -1,0 +1,17 @@
+{
+    "WorkloadName": "lcls",
+    "PayloadSize": 1000000,
+    "PayloadFormat": "hdf5",
+    "PayloadElement": "file",
+    "DataRate": 3750000,
+    "DataPackaging": {
+    "type": "individual"
+  },
+    "Variability": "steady",
+    "ConsumptionMode": "push", 
+    "NumConsumers": 16, 
+    "ConsumerParallelism": "dedicatedMPI",
+    "ConsPayloadDistribution": "roundrobin",
+    "NumProducers": 16,
+    "ProducerParallelism": "dedicatedMPI"
+  }

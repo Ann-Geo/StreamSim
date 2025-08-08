@@ -1,0 +1,18 @@
+{
+    "WorkloadName": "deleria",
+    "PayloadSize": 2000,
+    "PayloadFormat": "binary",
+    "PayloadElement": "variable",
+    "DataRate": 4000000,
+    "DataPackaging": {
+        "type": "batched",
+        "batchMessageCount": 8
+    },
+    "Variability": "steady",
+    "ConsumptionMode": "push",
+    "NumConsumers": 1, 
+    "ConsumerParallelism": "nonMPI",
+    "ConsPayloadDistribution": "roundrobin",
+    "NumProducers": 1,
+    "ProducerParallelism": "nonMPI"
+  }
