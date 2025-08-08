@@ -1,0 +1,8 @@
+  {
+  "role": "producer",
+  "numPhases": [1],
+  "concurrency": 0,
+  "testType": "throughput",
+  "msgCount": 2048,
+  "testMode": "msgCount"
+}

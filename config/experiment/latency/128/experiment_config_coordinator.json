@@ -1,0 +1,8 @@
+  {
+  "role": "coordinator",
+  "numPhases": [1],
+  "concurrency": 0,
+  "testType": "latency",
+  "msgCount": 1024,
+  "testMode": "msgCount"
+}

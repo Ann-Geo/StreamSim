@@ -1,0 +1,9 @@
+  {
+  "role": "consumer",
+  "numPhases": [1],
+  "concurrency": 0,
+  "testType": "latency",
+  "testPattern":"broadcast-gather",
+  "msgCount": 64,
+  "testMode": "msgCount"
+}

@@ -1,0 +1,9 @@
+  {
+  "role": "coordinator",
+  "numPhases": [1],
+  "concurrency": 0,
+  "testType": "throughput",
+  "testPattern":"work-sharing",
+  "msgCount": 65536,
+  "testMode": "msgCount"
+}
