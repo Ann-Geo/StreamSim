@@ -1,0 +1,8 @@
+{
+    "clusterType": "rabbitmq",
+    "clusterName": "alz-rmq",
+    "numNodes": 1,
+    "infoCluster": true,
+    "deployCluster": false,
+    "shutdownCluster": false
+  }
