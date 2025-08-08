@@ -24,10 +24,10 @@ A Golang-based simulator that simulates the streaming behaviours of scientific w
 This will give a url that can be used to connect to the RabbitMQ cluster, specify that url in config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json file in the "amqpsUrl:" field.
 
 ### Running a simple test
-* This test will start 2 consumer, 2 producers and a coordinator.
+* This test will start 2 consumers, 2 producers and a coordinator.
 * Start consumers first:
 srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_consumer.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
 * Start producer:
 srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_producer.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
-* Start coordinator
+* Start coordinator:
 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_coordinator.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
