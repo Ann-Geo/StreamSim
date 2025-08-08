@@ -1,0 +1,29 @@
+  {
+  "Acknowledgements": {
+    "PublisherConfirms": {
+      "type": "no_acks"
+    },
+    "ConsumerAcks": {
+      "mode": "manual",
+      "manualAckType": "multiple",
+      "manualAckMultipleCount": 32
+    }
+  },
+  "Durability": {
+    "MessageDurability": "none",
+    "QueueDurability": "none"
+  },
+  "PrefetchCount": {
+    "PerConsumer": 64
+  },
+  "QueueProperties": {
+    "QueueSizeMessages": 131072,
+    "QueueOverflow": "drop-head"
+  },
+  "BindingDurability": "fully_durable",
+  "TotalQueues": 1,
+  "StreamUseCase": {
+    "MaxLength": 2048,
+    "MaxSegmentSizeBytes": 4096
+  }
+}

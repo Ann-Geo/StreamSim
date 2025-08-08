@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "RabbitMQ Configuration",
+    "description": "Schema for framework specific configurations - connection info, tunables",
+    "properties": {
+      "toolkit": {
+        "type": "string",
+        "enum": ["ds2hpc", "scistream", "none"],
+        "description": "Streaming toolkit used"
+      },
+      "tlsEncryption": {
+        "type": "string",
+        "enum": ["Tls", "NoTls"],
+        "description": "Whether to use TLS for connection"
+      },
+      "hostname": {
+        "type": "string",
+        "description": "Hostname of the RabbitMQ server"
+      },
+      "port": {
+        "type": "integer",
+        "description": "Port number on which the RabbitMQ server is running"
+      },
+      "amqpsUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "AmqpsUrl to connect to the cluster"
+      },
+      "virtualHost": {
+        "type": "string",
+        "default": "/",
+        "description": "The virtual host to connect to on the RabbitMQ server"
+      },
+      "connectionName": {
+        "type": "string",
+        "description": "Optional name to identify the connection in the server logs and management UI"
+      },
+      "endpoints": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            }
+          },
+          "required": ["host", "port"]
+        },
+        "description": "A list of endpoints for connecting in a clustered setup"
+      },
+      "authentication": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": ["username_password", "uri", "tls_certificates", "external_plugin"],
+            "description": "The method of authentication used for connecting"
+          },
+          "credentials": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": ["username", "password"]
+              },
+              {
+                "type": "string",
+                "format": "uri",
+                "description": "URI including credentials and virtual host"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "certificate": {
+                    "type": "string",
+                    "description": "Path to client certificate file"
+                  },
+                  "privateKey": {
+                    "type": "string",
+                    "description": "Path to client private key file"
+                  }
+                },
+                "required": ["certificate", "privateKey"]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "pluginName": {
+                    "type": "string"
+                  },
+                  "configuration": {
+                    "type": "string",
+                    "description": "Configuration details or path to configuration for the plugin"
+                  }
+                },
+                "required": ["pluginName"]
+              }
+            ]
+          }
+        },
+        "required": ["method"]
+      }
+    },
+    "required": ["toolkit", "hostname", "port", "authentication"]
+  }

@@ -1,0 +1,14 @@
+{
+    "toolkit": "ds2hpc",
+    "tlsEncryption": "Tls",
+    "hostname": "olivine-stream1.ccs.ornl.gov",
+    "port": 30913,
+    "amqpsUrl": "amqps://stf008:EKXZYnVOzJvEfOJJ@rmq-stf008-alz-rmq.io.s3m-streams.apps.olivine.ccs.ornl.gov:443",
+    "authentication": {
+        "method": "username_password",
+        "credentials": {
+            "username": "stf008",
+            "password": "YUirRcRxxmKPrrxI"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "toolkit": "scistream",
+    "tlsEncryption": "NoTls",
+    "hostname": "olivine-stream1.ccs.ornl.gov",
+    "port": 30913,
+    "amqpsUrl": "amqp://rabbit:rabbit@128.219.128.160:30513",
+    "authentication": {
+        "method": "username_password",
+        "credentials": {
+            "username": "rabbit",
+            "password": "rabbit"
+        }
+    }
+}

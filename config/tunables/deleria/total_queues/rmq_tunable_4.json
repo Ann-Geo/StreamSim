@@ -1,0 +1,28 @@
+  {
+  "Acknowledgements": {
+    "PublisherConfirms": {
+      "type": "no_acks"
+    },
+    "ConsumerAcks": {
+      "mode": "automatic"
+    }
+  },
+  "Durability": {
+    "MessageDurability": "none",
+    "QueueDurability": "none"
+  },
+  "PrefetchCount": {
+    "PerConsumer": 1
+  },
+  "QueueProperties": {
+    "QueueStructure": "classic",
+    "QueueSizeMessages": 131072,
+    "QueueOverflow": "reject-publish"
+  },
+  "BindingDurability": "fully_durable",
+  "TotalQueues": 4,
+  "StreamUseCase": {
+    "MaxLength": 2048,
+    "MaxSegmentSizeBytes": 4096
+  }
+}

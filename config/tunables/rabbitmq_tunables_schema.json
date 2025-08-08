@@ -1,0 +1,177 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Messaging System Configuration",
+    "type": "object",
+    "properties": {
+      "Acknowledgements": {
+        "type": "object",
+        "properties": {
+          "PublisherConfirms": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "no_acks",
+                  "individual_async",
+                  "batch_sync",
+                  "individual_sync"
+                ]
+              },
+              "batchSize": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Number of messages in each batch (only valid if type is 'batch_sync')"
+              }
+            },
+            "required": ["type"],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "enum": ["batch_sync"]
+                    }
+                  }
+                },
+                "then": {
+                  "required": ["batchSize"]
+                },
+                "else": {
+                  "not": {
+                    "required": ["batchSize"]
+                  }
+                }
+              }
+            ]
+          },
+          "ConsumerAcks": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": ["automatic", "manual"]
+              },
+              "manualAckType": {
+                "type": "string",
+                "enum": ["single", "multiple"]
+              },
+              "manualAckMultipleCount": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Number of messages after which to send a multiple manual ack (only used when manualAckType is 'multiple')"
+              }
+            },
+            "required": ["mode"],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "mode": { "const": "manual" } 
+                  },
+                    "required": ["mode"]
+                  },
+                  "then": {
+                    "required": ["manualAckType"]
+                  }
+                },
+               {
+                "if": {
+                  "properties": {
+                    "mode": { "const": "manual" },
+                    "manualAckType": { "const": "multiple" }
+                  },
+                  "required": ["mode", "manualAckType"]
+                },
+                "then": {
+                  "required": ["manualAckMultipleCount"]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "mode": { "not": { "const": "manual" } }
+                  },
+                  "required": ["mode"]
+                },
+                "then": {
+                  "not": {
+                    "required": ["manualAckType","manualAckMultipleCount"]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": ["PublisherConfirms", "ConsumerAcks"]
+      },
+      "Durability": {
+        "type": "object",
+        "properties": {
+          "MessageDurability": {
+            "type": "string",
+            "enum": ["none", "persistent"]
+          },
+          "QueueDurability": {
+            "type": "string",
+            "enum": ["none", "persistent"]
+          }
+        },
+        "required": ["MessageDurability", "QueueDurability"]
+      },
+      "PrefetchCount": {
+        "type": "object",
+        "properties": {
+          "PerConsumer": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": ["PerConsumer"],
+        "additionalProperties": false
+      },
+      "QueueProperties": {
+        "type": "object",
+        "properties": {
+          "QueueSizeMessages": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum number of messages allowed in the queue, represented in bytes"
+          },
+          "QueueOverflow": {
+            "type": "string",
+            "enum": ["drop-head", "dead-letter", "reject-publish"],
+            "description": "Queue overflow strategy"
+          },
+          "QueueStructure": {
+            "type": "string",
+            "enum": ["classic", "quorum", "stream"],
+            "description": "Type of queue structure to use"
+          }
+        }
+      },
+      "BindingDurability": {
+        "type": "string",
+        "enum": ["fully_durable", "semi_durable", "fully_transient"]
+      },
+      "TotalQueues": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Total number of queues allocated"
+      },
+      "StreamUseCase": {
+        "type": "object",
+        "properties": {
+          "MaxLength": {
+            "type": "integer",
+            "minimum": 1024
+          },
+          "MaxSegmentSizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+  
