@@ -1,9 +1,0 @@
-  {
-  "role": "consumer",
-  "numPhases": [1],
-  "concurrency": 0,
-  "testType": "latency",
-  "testPattern":"work-sharing-fb",
-  "msgCount": 2048,
-  "testMode": "msgCount"
-}

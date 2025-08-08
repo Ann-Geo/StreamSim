@@ -1,9 +1,0 @@
-  {
-  "role": "producer",
-  "numPhases": [1],
-  "concurrency": 0,
-  "testType": "latency",
-  "testPattern":"work-sharing-fb",
-  "msgCount": 4096,
-  "testMode": "msgCount"
-}

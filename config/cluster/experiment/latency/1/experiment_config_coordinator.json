@@ -1,9 +1,0 @@
-  {
-  "role": "coordinator",
-  "numPhases": [1],
-  "concurrency": 0,
-  "testType": "latency",
-  "testPattern":"work-sharing-fb",
-  "msgCount": 16384,
-  "testMode": "msgCount"
-}

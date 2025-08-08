@@ -1,9 +1,0 @@
-  {
-  "role": "producer",
-  "numPhases": [1],
-  "concurrency": 0,
-  "testType": "throughput",
-  "testPattern":"work-sharing",
-  "msgCount": 8192,
-  "testMode": "msgCount"
-}

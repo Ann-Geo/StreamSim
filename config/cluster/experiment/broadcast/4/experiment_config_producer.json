@@ -1,9 +1,0 @@
-  {
-  "role": "producer",
-  "numPhases": [1],
-  "concurrency": 0,
-  "testType": "throughput",
-  "testPattern":"broadcast",
-  "msgCount": 2048,
-  "testMode": "msgCount"
-}
