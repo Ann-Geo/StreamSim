@@ -1,8 +1,8 @@
 package experiment
 
 import (
-	"dstream-sim/arguments"
-	"dstream-sim/helpers"
+	"StreamSim/arguments"
+	"StreamSim/helpers"
 	"encoding/json"
 	"os"
 )

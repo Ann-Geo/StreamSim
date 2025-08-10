@@ -1,15 +1,15 @@
 package main
 
 import (
-	"dstream-sim/arguments"
-	"dstream-sim/constants"
-	"dstream-sim/experiment"
-	"dstream-sim/framework/rabbitmq"
-	"dstream-sim/helpers"
-	"dstream-sim/params"
-	"dstream-sim/run"
-	setup "dstream-sim/setup/provision"
-	"dstream-sim/workload"
+	"StreamSim/arguments"
+	"StreamSim/constants"
+	"StreamSim/experiment"
+	"StreamSim/framework/rabbitmq"
+	"StreamSim/helpers"
+	"StreamSim/params"
+	"StreamSim/run"
+	setup "StreamSim/setup/provision"
+	"StreamSim/workload"
 
 	"cogentcore.org/lab/base/mpi"
 )

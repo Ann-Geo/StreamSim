@@ -8,9 +8,9 @@ type Rabbitmqtunables struct {
 package rabbitmq
 
 import (
-	"dstream-sim/arguments"
-	"dstream-sim/constants"
-	"dstream-sim/helpers"
+	"StreamSim/arguments"
+	"StreamSim/constants"
+	"StreamSim/helpers"
 	"encoding/json"
 	"fmt"
 	"os"

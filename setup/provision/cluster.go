@@ -2,7 +2,7 @@ package setup
 
 import (
 	"bytes"
-	"dstream-sim/helpers"
+	"StreamSim/helpers"
 	"encoding/json"
 	"errors"
 	"os"

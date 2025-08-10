@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"dstream-sim/constants"
+	"StreamSim/constants"
 	"encoding/binary"
 	"fmt"
 	"math"

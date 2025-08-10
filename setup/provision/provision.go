@@ -1,7 +1,7 @@
 package setup
 
 import (
-	"dstream-sim/helpers"
+	"StreamSim/helpers"
 	"fmt"
 	"os"
 	"os/exec"
@@ -111,8 +111,8 @@ func (p *ClusterIn) ProvisionCluster() error {
 		}
 	}
 
-	//cd ../dstream-sim
-	err = os.Chdir("../dstream-sim/")
+	//cd ../StreamSim
+	err = os.Chdir("../StreamSim/")
 	if err != nil {
 		helpers.ErrorLogger.Log(helpers.ERROR, "Failed to change directory")
 		return err

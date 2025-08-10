@@ -1,6 +1,6 @@
 package framework
 
-import "dstream-sim/arguments"
+import "StreamSim/arguments"
 
 type ConnectionConfig interface {
 	ParseConnectionConfig(*arguments.SimulatorIns) error

@@ -1,7 +1,7 @@
 package arguments
 
 import (
-	"dstream-sim/helpers"
+	"StreamSim/helpers"
 	"flag"
 	"fmt"
 	"os"

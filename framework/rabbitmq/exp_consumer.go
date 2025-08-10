@@ -1,10 +1,10 @@
 package rabbitmq
 
 import (
-	"dstream-sim/constants"
-	"dstream-sim/helpers"
-	"dstream-sim/params"
-	"dstream-sim/results"
+	"StreamSim/constants"
+	"StreamSim/helpers"
+	"StreamSim/params"
+	"StreamSim/results"
 	"fmt"
 	"sync"
 	"time"

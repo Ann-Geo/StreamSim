@@ -1,7 +1,7 @@
 package rabbitmq
 
 import (
-	"dstream-sim/helpers"
+	"StreamSim/helpers"
 
 	"cogentcore.org/lab/base/mpi"
 )

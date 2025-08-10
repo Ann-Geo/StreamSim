@@ -1,7 +1,7 @@
 package rabbitmq
 
 import (
-	"dstream-sim/helpers"
+	"StreamSim/helpers"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )

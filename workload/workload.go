@@ -1,8 +1,8 @@
 package workload
 
 import (
-	"dstream-sim/arguments"
-	"dstream-sim/helpers"
+	"StreamSim/arguments"
+	"StreamSim/helpers"
 	"encoding/json"
 	"fmt"
 	"os"

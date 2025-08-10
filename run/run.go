@@ -1,10 +1,10 @@
 package run
 
 import (
-	"dstream-sim/constants"
-	"dstream-sim/framework/rabbitmq"
-	"dstream-sim/helpers"
-	"dstream-sim/params"
+	"StreamSim/constants"
+	"StreamSim/framework/rabbitmq"
+	"StreamSim/helpers"
+	"StreamSim/params"
 )
 
 func RunParamsExperiment(t *params.TestParams) error {

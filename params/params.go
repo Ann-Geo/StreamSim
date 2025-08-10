@@ -1,9 +1,9 @@
 package params
 
 import (
-	"dstream-sim/experiment"
-	"dstream-sim/framework"
-	"dstream-sim/workload"
+	"StreamSim/experiment"
+	"StreamSim/framework"
+	"StreamSim/workload"
 )
 
 type TestParams struct {

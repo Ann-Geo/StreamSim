@@ -2,9 +2,9 @@ package rabbitmq
 
 import (
 	"crypto/tls"
-	"dstream-sim/constants"
-	"dstream-sim/helpers"
-	"dstream-sim/params"
+	"StreamSim/constants"
+	"StreamSim/helpers"
+	"StreamSim/params"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )

@@ -1,9 +1,9 @@
 package rabbitmq
 
 import (
-	"dstream-sim/constants"
-	"dstream-sim/helpers"
-	"dstream-sim/params"
+	"StreamSim/constants"
+	"StreamSim/helpers"
+	"StreamSim/params"
 	"fmt"
 
 	amqp "github.com/rabbitmq/amqp091-go"
