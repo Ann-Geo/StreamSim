@@ -485,17 +485,21 @@ func (aq *AllQueues) DeleteAllQueues(client Client) error {
 	for key := range aq.Queues {
 		helpers.DebugLogger.Log(helpers.DEBUG, "Found queue: %v\n", key)
 		//TODO: Check this condition for multi queue tests
-		//if !strings.Contains(aq.Queues[key].QName, constants.THROUGHPUT_Q) {
-		helpers.DebugLogger.Log(helpers.DEBUG, "Deleting queue: %v\n", key)
-		_, err := client.Ch.QueueDelete(aq.Queues[key].QName,
-			aq.Queues[key].QDeletionArgs.IfUnused,
-			aq.Queues[key].QDeletionArgs.IfEmpty,
-			aq.Queues[key].QDeletionArgs.IfNoWait)
-		if err != nil {
-			helpers.ErrorLogger.Log(helpers.ERROR, "Failed to purge a queue: %v\n", err)
-			return err
+		//Need to revisit this if broadcast also start using multi queues
+		if testParams.Experiment.TestType == constants.THROUGHPUT_TEST &&
+			testParams.Tunables.GetTotalQueues() > 1 &&
+			!strings.Contains(aq.Queues[key].QName, constants.THROUGHPUT_Q) {
+			helpers.DebugLogger.Log(helpers.DEBUG, "Deleting queue: %v\n", key)
+			_, err := client.Ch.QueueDelete(aq.Queues[key].QName,
+				aq.Queues[key].QDeletionArgs.IfUnused,
+				aq.Queues[key].QDeletionArgs.IfEmpty,
+				aq.Queues[key].QDeletionArgs.IfNoWait)
+			if err != nil {
+				helpers.ErrorLogger.Log(helpers.ERROR, "Failed to purge a queue: %v\n", err)
+				return err
+			}
+			//}
 		}
-		//}
 	}
 	return nil
 }
