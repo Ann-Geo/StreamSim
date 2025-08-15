@@ -18,7 +18,7 @@ A Golang-based simulator that simulates the streaming behaviours of scientific w
 ### Creating a RabbitMQ cluster utilizing DS2HPC architectural framework and S3M at OLCF
 * This is a Managed Service Streaming (MSS) type of streaming architecture.
 * To create a RabbitMQ cluster using S3M API (https://s3m.apps.olivine.ccs.ornl.gov/docs/gen/getting-started.html) first obtain a TOKEN using, https://s3m-myolcf.apps.olivine.ccs.ornl.gov
-* Export the token as TOKEN=<token>
+* Export the token as TOKEN="token"
 * Provision a rabbitmq cluster using:
 {curl -X POST "https://s3m.apps.olivine.ccs.ornl.gov/olcf/v1alpha/ streaming/rabbitmq/provision\_cluster" -H "Authorization: TOKEN" -H "Content-Type: application/json" -d '{"kind": "general", "name": "rabbitmq", "resourceSettings":{"cpus": 12, "ram-gbs": 32, "nodes": 3, "max-msg-size": 536870912} }'}
 This will give a url that can be used to connect to the RabbitMQ cluster, specify that url in config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json file in the "amqpsUrl:" field.
@@ -26,10 +26,10 @@ This will give a url that can be used to connect to the RabbitMQ cluster, specif
 ### Creating a RabbitMQ cluster using Helmchart deployment on OpenShift clusters
 * This is a Direct Streaming (DTS) type of streaming architecture.
 * cd setup/helm-charts
-* If using OLCF Olivine Openshift cluster, use the login command: oc login https://api.olivine.ccs.ornl.gov:6443 --username=<username>
-* helm install rabbitmq bitnami/rabbitmq --namespace <namespace> -f values-rabbit-tls.yaml
+* If using OLCF Olivine Openshift cluster, use the login command: oc login https://api.olivine.ccs.ornl.gov:6443 --username="username"
+* helm install rabbitmq bitnami/rabbitmq --namespace "namespace" -f values-rabbit-tls.yaml
 * This will deploy a three node node RabbitMQ cluster on the Data Streaming Nodes (DSNs) in Olivine cluster with specifications listed in values-rabbit-tls.yaml
-* To delete the cluster: helm uninstall rabbitmq -n <namespace>
+* To delete the cluster: helm uninstall rabbitmq -n "namespace"
 * Change the "amqpsUrl" field in direct_rabbitmq_config_olivine_consumer.json and direct_rabbitmq_config_olivine_producer.json to reflect the hostIP:NodePort of one the RabbitMQ servers deployed.
 
 ### Deploying SciStream on OpenShift Cluster
