@@ -62,7 +62,7 @@ srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config
 * Start coordinator:
 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_coordinator.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
 
-### Note
+### Simulator configuration options
 * Our simulator accepts various configuration options.
 * For each configuration options refer the respective *_schema.json file to understand different configuratons and settings supported.
     - Workload specific: config/workload
