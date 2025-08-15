@@ -33,7 +33,7 @@ This will give a url that can be used to connect to the RabbitMQ cluster, specif
 * Change the "amqpsUrl" field in direct_rabbitmq_config_olivine_consumer.json and direct_rabbitmq_config_olivine_producer.json to reflect the hostIP:NodePort of one the RabbitMQ servers deployed.
 
 ### Deploying SciStream on OpenShift Cluster
-* If using OLCF Olivine Openshift cluster, use the login command: oc login https://api.olivine.ccs.ornl.gov:6443 --username=<username>
+* If using OLCF Olivine Openshift cluster, use the login command: oc login https://api.olivine.ccs.ornl.gov:6443 --username="username"
 * cd setup/scistream
 * First deploy the RabbitMQ cluster as described above in Direct Streaming architecture.
 * Consumer S2CS deployment:
