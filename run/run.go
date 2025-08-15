@@ -43,7 +43,7 @@ func RunParamsExperiment(t *params.TestParams) error {
 	if t.Experiment.Role == constants.COORDINATOR_ROLE {
 		if t.Cleanup {
 			helpers.DebugLogger.Log(helpers.DEBUG, "Cleanup flag set: %v\n", t.Cleanup)
-			err = aq.DeleteAllQueues(*cli)
+			err = aq.DeleteAllQueues(*t, *cli)
 			if err != nil {
 				return err
 			}
