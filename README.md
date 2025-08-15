@@ -64,4 +64,8 @@ srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config
 
 ### Note
 * Our simulator accepts various configuration options:-
-    - 
+    - Workload specific: config/workload
+    - Experiment specific: config/experiment
+    - Streaming service tunables: config/tunables
+    - Streaming architectures and connections: config/framework/rabbitmq
+* For different kind of tests (different messaging patterns and workloads), their respective configuration files have to be chosen and can be run similar to the commands shown above.
