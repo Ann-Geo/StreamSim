@@ -5,6 +5,7 @@ import (
 	"StreamSim/helpers"
 	"StreamSim/params"
 	"fmt"
+	"strings"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )
@@ -480,7 +481,7 @@ func (q *Queue) MakeQueuesDeleteReady() {
 	q.QDeletionArgs.IfNoWait = false
 }
 
-func (aq *AllQueues) DeleteAllQueues(client Client) error {
+func (aq *AllQueues) DeleteAllQueues(testParams params.TestParams, client Client) error {
 
 	for key := range aq.Queues {
 		helpers.DebugLogger.Log(helpers.DEBUG, "Found queue: %v\n", key)

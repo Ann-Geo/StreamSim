@@ -1,0 +1,162 @@
+# Pod Definition
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cons-scistream-pod
+  labels:
+    app: cons-scistream
+spec:
+  nodeSelector:
+    region: datastreaming
+  volumes:
+  - name: certs-dir
+    emptyDir: {}
+  - name: scratch-volume
+    emptyDir:
+      sizeLimit: 300Mi
+  - name: scratch-volume2
+    emptyDir:
+      sizeLimit: 300Mi
+  containers:
+  - name: cons-scistream-container
+    volumeMounts:
+      - name: certs-dir
+        mountPath: /certs
+      - name: scratch-volume
+        mountPath: /.scistream
+      - name: scratch-volume2
+        mountPath: /scratch
+    image: "registry.apps.olivine.ccs.ornl.gov/stf008/scistream:1.2.1"
+    env:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 300m
+        memory: 500Mi
+    # Equivalent of --entrypoint /bin/bash
+    command: ["/bin/bash", "-c"]
+    
+    # Run "ip a" then keep the container alive by using "cat".
+    args:
+      - echo My pod IP is $POD_IP;
+
+        ip a;
+
+        cd /certs;
+
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cons-server.key -out cons-server.crt -subj "/CN=$POD_IP" -addext "subjectAltName=IP:128.219.128.160,IP:$POD_IP,DNS:olivine-stream1.ccs.ornl.gov";
+
+        ls;
+
+        cd ../.scistream;
+
+        s2cs --server_crt="/certs/cons-server.crt" --server_key="/certs/cons-server.key" --type="StunnelSubprocess" --verbose --listener_ip=$POD_IP;
+        
+        cat;
+    
+    # Similar to -it in Docker (allocates a TTY and keeps stdin open).
+    tty: true
+    stdin: true
+    
+    # Expose the same ports as in `-p 5000:5000 -p 5100-5110:5100-5110`
+    ports:
+      - containerPort: 5000
+      - containerPort: 5100
+      - containerPort: 5101
+      - containerPort: 5102
+      - containerPort: 5103
+      - containerPort: 5104
+      - containerPort: 5105
+      - containerPort: 5106
+      - containerPort: 5107
+      - containerPort: 5108
+      - containerPort: 5109
+      - containerPort: 5110
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cons-scistream-npservice
+spec:
+  type: NodePort
+  selector:
+    app: cons-scistream
+  ports:
+    - name: port1
+      protocol: TCP
+      port: 5000
+      nodePort: 30600
+      targetPort: 5000
+
+    - name: port2
+      protocol: TCP
+      port: 5100
+      nodePort: 30610
+      targetPort: 5100
+
+    - name: port3
+      protocol: TCP
+      port: 5101
+      nodePort: 30611
+      targetPort: 5101
+
+    - name: port4
+      protocol: TCP
+      port: 5102
+      nodePort: 30612
+      targetPort: 5102
+
+    - name: port5
+      protocol: TCP
+      port: 5103
+      nodePort: 30613
+      targetPort: 5103
+
+    - name: port6
+      protocol: TCP
+      port: 5104
+      nodePort: 30614
+      targetPort: 5104
+
+    - name: port7
+      protocol: TCP
+      port: 5105
+      nodePort: 30615
+      targetPort: 5105
+
+    - name: port8
+      protocol: TCP
+      port: 5106
+      nodePort: 30616
+      targetPort: 5106
+
+    - name: port9
+      protocol: TCP
+      port: 5107
+      nodePort: 30617
+      targetPort: 5107
+
+    - name: port10
+      protocol: TCP
+      port: 5108
+      nodePort: 30618
+      targetPort: 5108
+
+    - name: port11
+      protocol: TCP
+      port: 5109
+      nodePort: 30619
+      targetPort: 5109
+
+    - name: port12
+      protocol: TCP
+      port: 5110
+      nodePort: 30620
+      targetPort: 5110
