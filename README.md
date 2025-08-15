@@ -30,15 +30,30 @@ This will give a url that can be used to connect to the RabbitMQ cluster, specif
 * helm install rabbitmq bitnami/rabbitmq --namespace <namespace> -f values-rabbit-tls.yaml
 * This will deploy a three node node RabbitMQ cluster on the Data Streaming Nodes (DSNs) in Olivine cluster with specifications listed in values-rabbit-tls.yaml
 * To delete the cluster: helm uninstall rabbitmq -n <namespace>
+* Change the "amqpsUrl" field in direct_rabbitmq_config_olivine_consumer.json and direct_rabbitmq_config_olivine_producer.json to reflect the hostIP:NodePort of one the RabbitMQ servers deployed.
 
 ### Deploying SciStream on OpenShift Cluster
 * If using OLCF Olivine Openshift cluster, use the login command: oc login https://api.olivine.ccs.ornl.gov:6443 --username=<username>
 * cd setup/scistream
 * First deploy the RabbitMQ cluster as described above in Direct Streaming architecture.
 * Consumer S2CS deployment:
+    - For Stunnel proxy: ./cons-s2cs_start.sh
+    - For HAProxy proxy: ./cons-s2cs_start_haproxy.sh
+    - Copy generated server certificates to where S2UC requests are to be sent.
+    - To stop Consumer S2CS: ./cons-s2cs_stop.sh
+* Producer S2CS deployment:
+    - For Stunnel proxy: ./prod-s2cs_start.sh
+    - For HAProxy proxy: ./prod-s2cs_start_haproxy.sh
+    - Copy generated server certificates to where S2UC requests are to be sent.
+    - To stop Producer S2CS: ./prod-s2cs_stop.sh
+* Send requests to create inbound and outbound proxies
+    - Launch an apptainer container by mounting the certificates and using SciStream apptainer image.
+    - apptainer exec --bind ./certs:/certs scistream_1.2.1.sif /bin/bash 
+    - Send requests using: ./requests.sh
+* Change the "amqpsUrl" field in scistream_rabbitmq_config_olivine_consumer.json to reflect the hostIP:NodePort of one the RabbitMQ servers deployed.
+* Change the "amqpsUrl" field in scistream_rabbitmq_config_olivine_producer.json to reflect the hostIP:NodePort of the Producer S2CS proxy opened.
 
-
-### Running a simple throughput measurement test using work sharing pattern
+### Running a simple throughput measurement test using work sharing pattern by utilizing DS2HPC framework
 * This test will start 2 consumers, 2 producers and a coordinator.
 * Start consumers first:
 srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_consumer.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
@@ -46,3 +61,7 @@ srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config
 srun -n 2 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_producer.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
 * Start coordinator:
 ./main -f rabbitmq -e config/experiment/throughput/2/experiment_config_coordinator.json -fc config/framework/rabbitmq/ds2hpc_rabbitmq_config_olivine.json -t config/tunables/deleria/combination_adv/rmq_tunable_ind_sync.json -w config/workload/deleria/2/deleria.json
+
+### Note
+* Our simulator accepts various configuration options:-
+    - 
